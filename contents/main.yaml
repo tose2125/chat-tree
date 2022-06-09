@@ -1,0 +1,31 @@
+- key: root
+  msg:
+    ja: こんにちは！　問題解決のお手伝いをします！
+    en: Hello! We will help you in chat!
+  next: menu
+- key: menu
+  msg:
+    ja: 利用するメニューを選んでください。
+    en: Please select a option
+  opt:
+    - msg:
+        ja: よくある質問を確認する
+        en: Checking frequently asked questions
+      link: https://utelecon.adm.u-tokyo.ac.jp/faq/
+    - msg:
+        ja: あてはまる状況をチャット形式で探す
+        en: Finding your situation in chat
+      next: cat
+- key: cat
+  msg:
+    ja: 何についてお困りですか？
+    en: What do you need help with?
+  opt:
+    - msg:
+        ja: テスト1
+        en: TEST1
+      next: test1/root
+    - msg:
+        ja: テスト2
+        en: TEST2
+      next: test2/root
