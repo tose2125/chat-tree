@@ -5,13 +5,13 @@
   "main": "index.js",
   "type": "module",
   "dependencies": {
-    "js-yaml": "^4.0",
-    "zod": "^3.0"
+    "js-yaml": "^4.1.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0",
-    "@types/node": "^20.0",
-    "typescript": "~5.0"
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.9.0",
+    "typescript": "~5.2.2"
   },
   "scripts": {
     "build": "tsc",
