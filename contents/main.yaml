@@ -24,8 +24,8 @@
     - msg:
         ja: テスト1
         en: TEST1
-      next: test1/root
+      next: test1:root
     - msg:
         ja: テスト2
         en: TEST2
-      next: test2/root
+      next: test2:root

@@ -1,0 +1,112 @@
+---
+type Lang = 'ja' | 'en'
+
+interface Props {
+  lang: Lang
+  msg: { [key in Lang]: string }
+  opt?: ReadonlyArray<
+    {
+      msg: { [key in Lang]: string }
+      active?: boolean
+    } & (
+      | {
+          to: string
+        }
+      | {
+          href: string
+        }
+    )
+  >
+  active?: boolean
+  last?: boolean
+}
+
+const { lang, msg, opt, active, last } = Astro.props
+---
+
+<div class='card' id={active ? 'next' : undefined}>
+  <div class='Qtext'>{msg[lang]}</div>
+  {
+    opt?.length ?? 0 > 0 ? (
+      <Fragment>
+        <div class='Atext'>
+          {opt?.map((option) =>
+            'to' in option ? (
+              <a href={'/' + lang + '/' + option.to + '#next'} class={option.active ? 'active' : undefined}>
+                {option.msg[lang]}
+              </a>
+            ) : (
+              <a href={option.href} class={option.active ? 'active' : undefined} target='_blank' rel='noopener noreferrer'>
+                {option.msg[lang]}
+              </a>
+            )
+          )}
+        </div>
+        <div class='Qmark'>Q</div>
+        <div class='Amark'>A</div>
+      </Fragment>
+    ) : last ? (
+      <div class='Atext'>
+        <a href={'/' + lang}>RESTART</a>
+      </div>
+    ) : (
+      <Fragment />
+    )
+  }
+</div>
+<style>
+  .card {
+    background-color: #ebf8ff;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'Qmark Qtext' 'Amark Atext';
+    padding: 0.5rem 0;
+  }
+  .Qmark {
+    grid-area: Qmark;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .Qtext {
+    grid-area: Qtext;
+    padding: 0.5rem 0;
+  }
+  .Amark {
+    grid-area: Amark;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .Atext {
+    grid-area: Atext;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .Atext a {
+    background-color: #edf2f7;
+    border-radius: 0.375rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    min-height: 2.5rem;
+    text-decoration: none;
+  }
+  .Atext a:hover {
+    background-color: #e2e8f0;
+    text-decoration: underline;
+  }
+  .Atext a.active {
+    background-color: #3182ce;
+    color: #fff;
+  }
+  .Atext a.active:hover {
+    background-color: #2b6cb0;
+  }
+</style>

@@ -1,0 +1,21 @@
+{
+  "name": "chat-tree-parser",
+  "version": "0.0.1",
+  "description": "chat tree parser",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "js-yaml": "^4.0",
+    "zod": "^3.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0",
+    "@types/node": "^20.0",
+    "typescript": "~5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "process": "node dist/index.js ../contents ../demo/src/data/chat-tree.json"
+  },
+  "license": "MIT"
+}

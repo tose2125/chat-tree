@@ -1,0 +1,35 @@
+---
+interface Props {
+  lang: 'ja' | 'en'
+  url: string | undefined
+}
+
+const { lang, url } = Astro.props
+---
+
+{
+  lang !== 'ja' && url !== undefined ? (
+    <a href={'/ja/' + url} hreflang='ja'>
+      日本語
+    </a>
+  ) : (
+    <Fragment />
+  )
+}
+{
+  lang !== 'en' && url !== undefined ? (
+    <a href={'/en/' + url} hreflang='en'>
+      English
+    </a>
+  ) : (
+    <Fragment />
+  )
+}
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
