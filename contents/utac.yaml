@@ -1,0 +1,306 @@
+### UTokyo Account ###
+- key: root
+  msg:
+    ja: UTokyo Accountについて
+    en: About UTokyo Account
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: UTokyo Account パスワード通知書
+        en: Notification regarding password for the UTokyo Account
+      next: pass-ntf
+    - msg:
+        ja: UTokyo Account 利用者メニュー
+        en: UTokyo Account User Menu
+      next: utacm-root
+    - msg:
+        ja: 多要素認証
+        en: Multi-Factor Authentication
+      next: mfa-root
+    - msg:
+        ja: 情報セキュリティ教育
+        en: Information Security Education (e-learning)
+      next: ise-root
+    - msg:
+        ja: その他のサービスにサインインできない
+        en: I cannot sign in to another service.
+      next: signin
+- key: signin
+  msg:
+    ja: サインインに失敗する原因はサービスごとに異なるため、サインインできないサービス名を選択してください。
+    en: Please select the service name for which you cannot sign in because the reason why signing in fails varies depending on the service.
+# UTokyo Account パスワード通知書
+- key: pass-ntf
+  msg:
+    ja: どのようなトラブルが生じていますか？
+    en: What trouble do you face?
+  opt:
+    - msg:
+        ja: パスワード通知書を受領していない
+        en: I haven't received the password notification.
+      next: pass-no
+- key: pass-no
+  msg:
+    ja: |
+      パスワード通知書は所属の学部・研究科等が発行します。
+      受領していない場合は所属の学部・研究科等へお問い合わせください。
+    en: |
+      The password notification will be issued by your faculty or graduate school.
+      If you have not received it, please contact your faculty or graduate school.
+### UTokyo Account 利用者メニュー ###
+- key: utacm-root
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: サインイン時
+        en: When you try signing in
+      next: utacm-signin
+    - msg:
+        ja: サインイン後
+        en: After you sign in
+      next: utacm-use
+    - msg:
+        ja: UTokyo Accountのパスワードリセット
+        en: Resetting password of UTokyo Account
+      next: sspr
+- key: utacm-signin
+  msg:
+    ja: |
+      UTokyo Account利用者メニューのログイン画面では数字10桁の共通IDの後に `@utac.u-tokyo.ac.jp` を入力しないでください。
+      正しいパスワードを入力しているにもかかわらずログインできない場合、UTokyo Accountが無効化されている可能性があります。
+    en: |
+      Please do not enter `@utac.u-tokyo.ac.jp` after the 10-digit common ID on the login screen of the UTokyo Account User Menu.
+      If you cannot log in even though you have entered the correct password, your UTokyo Account may have been disabled.
+  next: acc-chk
+- key: utacm-use
+  msg:
+    ja: 何をしたいですか？
+    en: What do you want to do?
+  opt:
+    - msg:
+        ja: UTokyo Accountのパスワード変更
+        en: Changing password of UTokyo Account
+      next: change
+    - msg:
+        ja: ECCSクラウドメールのメールアドレスまたはパスワード変更
+        en: Changing email address or password of ECCS Cloud Email
+      next: g:initial
+    - msg:
+        ja: UTokyo Accountの多要素認証の利用申請
+        en: Applying use of MFA for UTokyo Account
+      next: mfa-apl
+# パスワード変更
+- key: change
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: EX-129 パスワード複雑性でエラーとなりました。
+        en: EX-129 It became an error with the password complexity check.
+      next: pass-cmplx
+- key: pass-cmplx
+  msg:
+    ja: 複雑なパスワードを設定してください。例えば氏名を含むパスワードは推測されやすいため推奨されません。
+    en: Please set a complex password. For example, a password including your name is not recommended because it is easy to guess.
+# SSPR
+- key: sspr
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: パスワードのリセットを登録していないため、自分でパスワードをリセットすることはできません。
+        en: You can't reset your own password because you haven't registered for password reset.
+      next: sspr-mail
+    - msg:
+        ja: 現在、お使いのアカウントはブロックされているため、サインインできません。そのため、パスワードのリセットは現在行えません。
+        en: Your account is currently blocked from signing in. As a result, you may not reset your password at this time.
+      next: acc-inv
+    - msg:
+        ja: "SSPR_0012: パスワードのリセットを使用するために必要なライセンスが組織にありません。"
+        en: "SSPR_0012: Your organization does not have the required licenses necessary to perform password reset."
+      next: sspr-lic
+- key: sspr-mail
+  msg:
+    ja: |
+      通知メールの送信先となるメールアドレスが事前に登録されていないため、メールによるパスワード再設定を利用できない場合に表示されます。
+      メールなどでお問い合わせいただいても、本人確認ができませんのでパスワード再設定をお受けできません。
+      学生証や職員証による本人確認が可能な、所属する学部・研究科等あるいはECCSの窓口にてパスワード再発行を依頼してください。
+    en: |
+      This error message appears if you cannot use password reset by email because you have not registered an email address to which the notification email is sent in advance.
+      Even if you contact us by email, we cannot accept password reset because we cannot verify your identity.
+      Please request a password reissue at the counter of the faculty or graduate school you belong to or the ECCS, where you can verify your identity with your student ID card or staff ID card.
+- key: sspr-lic
+  msg:
+    ja: |
+      UTokyo Accountでは起こり得ないエラーです。
+      「ユーザーID」に "共通ID（数字10桁) @utac.u-tokyo.ac.jp" を入力しているか確認してください。
+    en: |
+      It is an error that cannot happen with UTokyo Account.
+      Please check if you have entered "Common ID (10 digits) @utac.u-tokyo.ac.jp" in the "User ID."
+# 安田講堂サインインエラー
+- key: pass
+  msg:
+    ja: パスワードの有効期限が切れているか、UTokyo Accountが無効化されている可能性があります。
+    en: Your password may have expired or your UTokyo Account may have been disabled.
+  next: pass-chk
+# パスワード有効期限チェック
+- key: pass-chk
+  msg:
+    ja: |
+      まず「UTokyo Account 利用者メニュー」にサインインして、パスワードの有効期限を確認してください。
+      「UTokyo Account 利用者メニュー」だけは有効期限の切れたパスワードを受け付けます。
+      ここではIDに10桁の数字のみを入力し `@utac.u-tokyo.ac.jp` は含めないでください。
+    en: |
+      First, sign in to the "UTokyo Account User Menu" to check the expiration date of your password.
+      Only "UTokyo Account User Menu" accepts an expired password.
+      Here, please enter only 10 digits in the ID field and do not include `@utac.u-tokyo.ac.jp`.
+  opt:
+    - msg:
+        ja: サインインできた。
+        en: I can sign in.
+      next: pass-chg
+    - msg:
+        ja: サインインできなかった。
+        en: I CANNOT sign in.
+      next: acc-chk
+- key: pass-chg
+  msg:
+    ja: |
+      初期パスワードから変更していないか、パスワードの有効期限が切れている場合はパスワード変更画面が表示されます。
+      初期パスワードから変更しており、パスワードの有効期限が切れていないことを確認して、再度元のサービスでサインインをお試しください。
+    en: |
+      If you have not changed your initial password or your password has expired, the password change screen will be displayed.
+      Please make sure that you have changed from the initial password and that your password has not expired, and try signing in with the original service again.
+# UTokyo Account有効性チェック
+- key: acc-chk
+  msg:
+    ja: |
+      UTokyo Accountのパスワード再設定機能を通じて、UTokyo Accountの有効性を確認してください。
+      「UTokyo Account 利用者メニュー」サインインページ下部のリンクから、パスワードを再設定してください。
+    en: |
+      Please check the validity of your UTokyo Account through the UTokyo Account password reset feature.
+      Please reset your password from the link at the bottom of the "UTokyo Account User Menu" sign in page.
+  next: sspr
+- key: acc-inv # invalidated
+  msg:
+    ja: |
+      UTokyo Accountが失効している場合に表示されます。
+      在籍期間が終了すると翌月はじめにUTokyo Accountの失効処理が行われます。
+      在籍期間が終了していないにもかかわらずUTokyo Accountが失効していると思われる場合、在籍情報の登録に手違いがある可能性があります。
+      ご所属の学部・研究科等の学務担当（学生の場合）または人事担当（教職員の場合）へお問い合わせください。
+    en: |
+      This error message appears if the UTokyo Account has been invalidated.
+      The UTokyo Account will be revoked at the beginning of the next month after the enrollment period ends.
+      Suppose you think your UTokyo Account has expired even though the enrollment period has not ended. In that case, there is a possibility that there is a mistake in registering the enrollment information.
+      Please contact the person in charge of academic affairs (for students) or human resources (for faculty and staff) of your faculty or graduate school.
+### 多要素認証 ###
+- key: mfa-root
+  msg:
+    ja: 多要素認証について
+    en: About Multi-Factor Authentication
+  next:
+    - mfa-menu
+    - main:exit
+- key: mfa-menu
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: 初期設定手順
+        en: Initial setup
+      next: mfa-initial
+    - msg:
+        ja: 利用申請後のサインイン
+        en: Sign in after the application for the MFA use
+      next: mfa-signin
+- key: mfa-initial
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: 手順1, 2
+        en: Step 1 or 2
+      next: mfa-reg
+    - msg:
+        ja: 手順3
+        en: Step 3
+      next: mfa-chk
+    - msg:
+        ja: 手順4
+        en: Step 4
+      next: mfa-apl
+# 手順1, 2
+- key: mfa-reg
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: 利用申請をしていないのに本人確認を求められる
+        en: I am asked to verify my identity even though I have not applied for use.
+      next: mfa-vsi
+    - msg:
+        ja: 本人確認方法を追加できない
+        en: I cannot add a verification method.
+      next: mfa-asm
+- key: mfa-vsi # Verification on the Security-Info page
+  msg:
+    ja: |
+      過去に手順1を実施したことがある場合、その際に登録した本人確認方法で本人確認する必要があります。
+      手順1を実施する前の状態に戻すには、「本人確認方法の再登録」手続を申請してください。
+    en: |
+      If you have performed step 1 in the past, you need to verify your access using the verification method you registered at that time.
+      To reset the state before performing step 1, please apply for the "Reregistering Verification Method" procedure.
+- key: mfa-asm # Add sign-in method
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: 既に5つの認証アプリまたはハードウェアトークンがあるため、Microsoft Authenticatorをセットアップできません。
+        en: You can't set up Microsoft Authenticator because you already have five authenticator apps or hardware tokens.
+      next: mfa-limit
+- key: mfa-limit
+  msg:
+    ja: |
+      「セキュリティ情報」のページにアクセスできる場合はご自身で削除できます。
+      アクセスできない場合は「本人確認方法の再登録」で全て削除してください。
+    en: |
+      If you can access the "Security Information" page, you can delete verification methods yourself.
+      If you cannot access the page, please apply for the "Reregister Verification Method" procedure to delete all verification methods.
+# 手順3
+- key: mfa-chk
+  msg:
+    ja: 手順3について
+    en: About step 3
+  next: main:wip
+# 手順4
+- key: mfa-apl
+  msg:
+    ja: 手順4について
+    en: About step 4
+  next: main:wip
+# MFA突破
+- key: mfa-signin
+  msg:
+    ja: 利用申請後のサインインについて
+    en: About sign in after the application for the MFA use
+  next: main:wip
+### 情報セキュリティ教育 ###
+- key: ise-root
+  msg:
+    ja: 情報セキュリティ教育について
+    en: About Information Security Education (e-learning)
+  next: main:wip

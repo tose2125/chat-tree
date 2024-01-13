@@ -1,0 +1,5 @@
+- key: root
+  msg:
+    ja: ECCS端末について
+    en: About ECCS terminals
+  next: main:wip

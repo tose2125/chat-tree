@@ -1,0 +1,171 @@
+### Google Workspace ###
+- key: root
+  msg:
+    ja: Google Workspaceについて
+    en: About Google Workspace
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: 利用開始
+        en: Initial setup
+      next: initial
+    - msg:
+        ja: ログイン
+        en: Log in
+      next: login
+    - msg:
+        ja: メール（Gmail）
+        en: Email (Gmail)
+      next: mail
+    - msg:
+        ja: Google ドライブ
+        en: Google Drive
+      next: drive
+    - msg:
+        ja: Google Meet
+        en: Google Meet
+      next: meet-root
+# 利用開始
+- key: initial
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: EX-079 ディレクトリの他の属性値と同じため、新しいパスワードには設定できません。
+        en: EX-079 It can't be set for New Password because the Directory already has the same attribute value.
+      next: pass-same
+- key: pass-same
+  msg:
+    ja: UTokyo Accountのパスワードやユーザ名と同じか、それを含むパスワードは設定できません。
+    en: You cannot set a password that is the same as or includes the password or username of UTokyo Account.
+# ログイン
+- key: login
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: Googleアカウントが見つかりませんでした。
+        en: Google account not found.
+      next: wrong-mail
+    - msg:
+        ja: パスワードが正しくありません。入力し直してください。
+        en: The password is incorrect. Please re-enter.
+      next: wrong-pass
+    - msg:
+        ja: お客様が所有するアカウントであることを確認できませんでした。
+        en: Google couldn't verify this account belongs to you.
+      next: suspicious
+    - msg:
+        ja: ご利用のパスワードはXX日前に変更されています
+        en: Your password was changed XX days ago
+      next: chngd-pass
+    - msg:
+        ja: このアカウントはGoogle Workspaceのポリシーに違反していたようです。
+        en: It looks like this account violated the Google Workspace policy.
+      next: policy
+- key: wrong-mail
+  msg:
+    ja: |
+      「UTokyo Account 利用者メニュー」サインイン後の「ECCSクラウドメール」ページで、現在のメールアドレスを確認できます。
+      メールエイリアスではログインできません。
+      メールアドレスを変更したら反映されるまで最長40分間かかります。
+    en: |
+      You can check your current email address on the "ECCS Cloud Mail" page after signing in to the "UTokyo Account User Menu."
+      You cannot log in with an email alias.
+      If you have changed your email address, it takes up to 40 minutes for the new one to be available.
+- key: wrong-pass
+  msg:
+    ja: |
+      「パスワードをお忘れの場合」をクリックすると「ドメイン管理者にお問い合わせください。」と表示されます。
+      問い合わせなくてもご自身でパスワードを再設定できます。
+      手順は以下のページをご覧ください。
+      https://www.ecc.u-tokyo.ac.jp/announcement/2004/03/23_300.html
+    en: |
+      When you click "Forgot your password?", the message "Contact your domain administrator." is displayed.
+      However, you can reset your password yourself without contacting the administrator.
+      Please see the page below for instructions.
+      https://www.ecc.u-tokyo.ac.jp/en/announcement/2016/06/09_2203.html
+- key: suspicious
+  msg:
+    ja: |
+      Googleが「不審なログイン」として検知した場合に表示されます。
+      ECCSクラウドメールでは2段階認証を設定することを強く推奨しており、2段階認証で本人確認をすることで誤検知が発生しにくくなります。
+      2段階認証などで本人確認ができない場合は、普段と同じネットワークや端末からのログインをお試しください。
+    en: |
+      This error message appears when Google detects your login trial as a "suspicious login."
+      We strongly recommend setting up two-step verification with ECCS Cloud Email. Verifying your identity with two-step verification will prevent false positives.
+      If you cannot verify your identity with two-step verification, please try logging in from the same network or device as usual.
+- key: chngd-pass
+  msg:
+    ja: UTokyo Accountが失効するとECCSクラウドメールのパスワードが自動変更されます。
+    en: The password of the ECCS Cloud Email is automatically changed when a UTokyo Account is invalidated.
+- key: policy
+  msg:
+    ja: 心当たりのあるポリシー違反行為を明記してお問い合わせください。
+    en: Please contact us with a description of any policy violation in your mind.
+# Gmail
+- key: mail
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: 離籍後について
+        en: About after graduation or resignation
+      next: main:wip
+# Google Drive
+- key: drive
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: 容量
+        en: Capacity
+      next: drive-cap
+    - msg:
+        ja: 共有ドライブ
+        en: Shared drive
+      next: shared-drive
+- key: drive-cap
+  msg:
+    ja: 何をしたいですか？
+    en: What do you want to do?
+  next: main:wip
+- key: shared-drive
+  msg:
+    ja: 何をしたいですか？
+    en: What do you want to do?
+  opt:
+    - msg:
+        ja: 共有ドライブを作成したい。
+        en: I want to make a shared drive.
+      next: shared-new
+- key: shared-new
+  msg:
+    ja: |
+      ECCSストレージ管理システムで共有ドライブを作成できます。
+      Googleドライブの画面から共有ドライブを作成することはできなくなりました。
+    en: |
+      You can make a new shared drive through the ECCS storage management system.
+      You can no longer make a shared drive from the Google Drive screen.
+### Google Meet ###
+- key: meet-root
+  msg:
+    ja: Google Meetについて
+    en: About Google Meet
+  next: main:wip
+### Google Chat ###
+- key: chat-root
+  msg:
+    ja: Google Chatについて
+    en: About Google Chat
+  next: main:wip

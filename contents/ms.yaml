@@ -1,0 +1,436 @@
+### Microsoft ###
+- key: root
+  msg:
+    ja: Microsoft提供サービスについて
+    en: About services provided by Microsoft
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: サインイン
+        en: Sign in
+      next: signin
+    - msg:
+        ja: Officeアプリ（Word, Excel, PowerPoint等）
+        en: Office applications (Word, Excel, PowerPoint, etc)
+      next: office
+    - msg:
+        ja: OneDrive
+        en: OneDrive
+      next: onedrive
+    - msg:
+        ja: Outlook
+        en: Outlook
+      next: outlook
+    - msg:
+        ja: Microsoft Teams
+        en: Microsoft Teams
+      next: teams-root
+# サインイン
+- key: signin
+  msg:
+    ja: サインインしようとしている場所を選択してください。
+    en: Please select the application type.
+  opt:
+    - msg:
+        ja: ウェブブラウザ上
+        en: On web browser
+      next: signin-web
+    - msg:
+        ja: デスクトップアプリ上
+        en: On desktop application
+      next: signin-app
+- key: signin-web
+  msg:
+    ja: Microsoftのサービスにサインインする際は、10桁の共通IDの後に `@utac.u-tokyo.ac.jp` を入力してください。
+    en: Please enter `@utac.u-tokyo.ac.jp` after the 10-digit common ID when signing in to Microsoft services.
+  next: utac:pass
+- key: signin-app
+  msg:
+    ja: サインインに失敗する原因はアプリごとに異なるため、サインインできないアプリ名を選択してください。
+    en: Please select the application name for which you cannot sign in because the reason why signing in fails varies depending on the application.
+# Office
+- key: office
+  msg:
+    ja: アプリの種類を選択してください。
+    en: Please select the application type.
+  opt:
+    - msg:
+        ja: インストールするデスクトップアプリ
+        en: Installable desktop apps
+      next: office-app
+    - msg:
+        ja: Web用Office
+        en: Office for the web
+      next: office-web
+- key: office-app
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: インストールまで
+        en: Installing the desktop apps
+      next: office-inst
+    - msg:
+        ja: ライセンス認証（サインイン）まで
+        en: Activating the license (signing in)
+      next: office-actv
+    - msg:
+        ja: 使用中
+        en: Using the desktop apps
+      next: office-use
+- key: office-inst
+  msg:
+    ja: ライセンスの種類を選択してください。
+    en: Please select the license type.
+  opt:
+    - msg:
+        ja: 【推奨】個人PC向け（1人の構成員が1台のPCを占有利用する場合）
+        en: "[Recommended] For exclusive use PCs with one user"
+      next: apps-inst
+    - msg:
+        ja: 共用PC向け（複数の構成員が同じPCを共同利用する場合）
+        en: For shared PCs with multiple users
+      next: onpr
+- key: office-actv
+  msg:
+    ja: ライセンスの種類を選択してください。
+    en: Please select the license type.
+  opt:
+    - msg:
+        ja: 【推奨】個人PC向け（1人の構成員が1台のPCを占有利用する場合）
+        en: "[Recommended] For exclusive use PCs with one user"
+      next: apps-actv
+    - msg:
+        ja: 共用PC向け（複数の構成員が同じPCを共同利用する場合）
+        en: For shared PCs with multiple users
+      next: onpr
+- key: office-use
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: Macでの編集は許可されていません
+        en: Your account doesn't allow editing on a Mac
+      next: mac-lic
+# Microsoft 365 Apps
+- key: apps-inst
+  msg:
+    ja: OSを選択してください。
+    en: Please select the operating system.
+  opt:
+    - msg:
+        ja: Windows
+        en: Windows
+      next: win-inst
+    - msg:
+        ja: macOS
+        en: macOS
+      next: mac-inst
+    - msg:
+        ja: タブレットやスマートフォン
+        en: Tablets or smartphones
+      next: office-sp
+- key: apps-actv
+  msg:
+    ja: OSを選択してください。
+    en: Please select the operating system.
+  opt:
+    - msg:
+        ja: Windows
+        en: Windows
+      next: win-signin
+    - msg:
+        ja: macOS
+        en: macOS
+      next: mac-signin
+    - msg:
+        ja: タブレットやスマートフォン
+        en: Tablets or smartphones
+      next: office-sp
+# Office for Windows
+- key: win-inst
+  msg:
+    ja: どのようなトラブルが生じていますか？
+    en: What trouble do you face?
+  opt:
+    - msg:
+        ja: 「アプリをインストール」を押しても「Microsoft 365 Apps」が表示されない。
+        en: '"Microsoft 365 Apps" option does not appears when I push "Install apps".'
+      next: lic-check
+- key: win-signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message are you facing?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: signin
+    - msg:
+        ja: |
+          問題が発生しました。デバイス管理を有効にできなかったため、ご使用のアカウントをこのデバイスで設定できませんでした。
+          エラーコード: 80180018
+        en: |
+          Something went wrong. Your account was not set up on this device because device management could not be enabled.
+          Error code: 80180018
+      next: wam-80180018
+    - msg:
+        ja: |
+          問題が発生しました。組織によってこのデバイスが無効にされました。
+          エラーコード: 135011
+        en: |
+          Something went wrong. Your organization has disabled this device.
+          Error code: 135011
+      next: wam-135011
+- key: wam-80180018
+  msg:
+    ja: |
+      UTokyo Accountでは無効化されているデバイス管理機能を設定しようとした場合に表示されます。
+      Officeアプリのインストール時にアプリが自動的に設定を行おうとする場合があります。
+      サインイン時に「すべてのアプリにサインインしたままにする」という画面が表示されたとき、「組織がデバイスを管理できるようにする」のチェックボックスを外してください。
+    en: |
+      This error message appears if you try to enable the device management function disabled with the UTokyo Account.
+      Office applications may try to set up automatically during license activation.
+      When you see the "Stay signed in to all your apps" screen during signing in, please uncheck the "Allow my organization to manage my devices" checkbox.
+- key: wam-135011
+  msg:
+    ja: |
+      デバイスを無効にすると、安全のためそのアカウントではサインインできなくなります。
+      そのためデバイスを紛失した場合にのみ、デバイスを無効にしてください。
+      誤って無効にしてしまった場合は、以下のページに記載されているデバイス名とオブジェクトIDを添えてお問い合わせください。
+      https://myaccount.microsoft.com/device-list?domain_hint=utac.u-tokyo.ac.jp
+    en: |
+      Once you disable your device, you will no longer be able to sign in with your account for security.
+      Please disable the device only when you lose it.
+      If you have disabled it by mistake, please contact the administrator with the device name and object ID shown on the folloing page.
+      https://myaccount.microsoft.com/device-list?domain_hint=utac.u-tokyo.ac.jp
+- key: win-use
+  msg:
+    ja: Office for Windows の使用について
+    en: About the use of Office for Windows
+  next: main:wip
+# Office for Mac
+- key: mac-inst
+  msg:
+    ja: どのようなトラブルが生じていますか？
+    en: What trouble do you face?
+  opt:
+    - msg:
+        ja: 「アプリをインストール」を押しても「Microsoft 365 Apps」が表示されない。
+        en: '"Microsoft 365 Apps" option does not appears when I push "Install apps".'
+      next: lic-check
+- key: mac-signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: signin
+- key: mac-lic # license
+  msg:
+    ja: |
+      1. ライセンスが付与されていることをご確認ください。
+      2. サインアウトした後、もう一度サインインしてみてください。
+      3. 「ライセンス削除ツール」を実行してみてください。
+      4. Officeアプリを完全にアンインストールした後、再度インストールしてみてください。
+      5. macOSで別のユーザを作成して、そちらでサインインしてみてください。
+    en: |
+      1. Please confirm that the license has been granted to you.
+      2. After signing out, please try signing in again.
+      3. Please try running the "License Removal Tool."
+      4. After completely uninstalling the Office app, please try installing it again.
+      5. Create another user on macOS and try signing in on a new user profile.
+# A3ライセンス
+- key: lic-check
+  msg:
+    ja: |
+      以下の手順でUTokyo AccountにOfficeライセンスが付与されていることを確認してください。
+      まず、以下のリンクからUTokyo AccountでOfficeのページにサインインしてください。
+      https://portal.office.com/?domain_hint=utac.u-tokyo.ac.jp
+      次に、以下のリンクからUTokyo Accountで「サブスクリプション」のページにアクセスしてください。
+      https://portal.office.com/account/?ref=MeControl#subscriptions
+      「最新デスクトップバージョンのOffice」が表示されていればライセンスが付与されています。
+    en: |
+      Please follow the steps below to ensure your UTokyo Account is granted an Office license.
+      First, please sign in to the Office page with your UTokyo Account using the link below.
+      https://portal.office.com/?domain_hint=utac.u-tokyo.ac.jp
+      Next, please access the "Subscription" page with your UTokyo Account using the link below.
+      https://portal.office.com/account/?ref=MeControl#subscriptions
+      If you can see "The latest desktop version of Office," the license is granted.
+  opt:
+    - msg:
+        ja: ライセンスあり（「Microsoft 365 A3」あり）
+        en: Licensed (with "Microsoft 365 A3")
+      next: lic-a3
+    - msg:
+        ja: ライセンスなし（「Office 365 A1」のみ）
+        en: No license ("Office 365 A1" only)
+      next: lic-a1
+- key: lic-a3
+  msg:
+    ja: |
+      以下のリンクから「アプリとデバイス」のページにアクセスしてみてください。
+      https://portal.office.com/account/?ref=MeControl#installs
+    en: |
+      Please visit the "Apps & devices" page using the link below.
+      https://portal.office.com/account/?ref=MeControl#installs
+- key: lic-a1
+  msg:
+    ja: |
+      全学包括の個人PC向けライセンスは学生および雇用されている教職員にのみ提供されています。
+      個人PCではWeb用Officeをご利用ください。
+      大学が所有し教職員が管理するPCでデスクトップ版Officeの利用を必要とする場合は、当該PCを管理する教職員へご相談ください。
+    en: |
+      The university-wide license for unshared PCs is only available to students and directly employed faculty and staff.
+      Please use the Office for the web on your PC.
+      If you need to use the desktop version of Office on a PC owned by the university and managed by faculty or staff, please consult the faculty or staff who manage the PC.
+# オンプレミスOffice
+- key: onpr
+  msg:
+    ja: PCの所有者・管理者を選択してください。
+    en: Please select the owner and administrator of the PC.
+  opt:
+    - msg:
+        ja: 大学が所有し、かつ教職員が管理するPC
+        en: A PC owned by the university and managed by faculty or staff
+      next: onpr-univ
+    - msg:
+        ja: 大学が所有していない、または教職員が管理していないPC
+        en: A PC not owned by the university or managed by faculty or staff
+      next: onpr-priv
+- key: onpr-univ
+  msg:
+    ja: |
+      UTokyo Portalをご参照ください。
+      https://univtokyo.sharepoint.com/sites/utokyoportal/wiki/d/UTokyo_Microsoft_License_for_University_PC.aspx
+    en: |
+      Please refer to the UTokyo Portal page.
+      https://univtokyo.sharepoint.com/sites/utokyoportal/wiki/d/UTokyo_Microsoft_License_for_University_PC.aspx
+- key: onpr-priv
+  msg:
+    ja: 共用PC向けライセンスは「大学が所有しかつ教職員が管理する」複数の構成員が利用するPCでのみ利用できます。
+    en: The license for shared PCs can only be used on PCs used by multiple users "owned by the university and managed by the faculty or staff."
+# モバイル版Office
+- key: office-sp
+  msg:
+    ja: モバイル版Officeについて
+    en: About mobile version Office
+  next: main:wip
+# Web版Office
+- key: office-web
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: サインイン時
+        en: When you try signing in
+      next: signin
+    - msg:
+        ja: サインイン後
+        en: After you sign in
+      next: main:wip # office-web-use
+# OneDrive
+- key: onedrive
+  msg:
+    ja: OneDriveについて
+    en: About OneDrive
+  next: main:wip
+# Outlook
+- key: outlook
+  msg:
+    ja: アプリの種類を選択してください。
+    en: Please select the application type.
+  opt:
+    - msg:
+        ja: インストールするデスクトップアプリ
+        en: Installable desktop apps
+      next: outlook-app
+    - msg:
+        ja: Web版Outlook（職員メール）
+        en: Outlook for the web (Email system for staff)
+      next: outlook-web
+# アプリ版Outlook
+- key: outlook-app
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: インストールまで
+        en: Installing the desktop apps
+      next: office-inst
+    - msg:
+        ja: ライセンス認証（サインイン）まで
+        en: Activating the license (signing in)
+      next: office-actv
+    - msg:
+        ja: 使用中
+        en: Using the desktop apps
+      next: outlook-use
+- key: outlook-use
+  msg:
+    ja: メーラーの使用について
+    en: About use of mailer
+  next: main:wip
+# Web版Outlook
+- key: outlook-web
+  msg:
+    ja: UTokyo Accountの種類を選んでください。
+    en: Please select the type of your UTokyo Account.
+  opt:
+    - msg:
+        ja: 学生
+        en: Student
+      next: outlook-student
+    - msg:
+        ja: 教職員
+        en: Faculty and staff
+      next: portal:mail
+- key: outlook-student
+  msg:
+    ja: 学生のUTokyo AccountではWeb版Outlookを使えません。
+    en: Outlook of web version cannot be used with the student's UTokyo Account.
+### Teams ###
+- key: teams-root
+  msg:
+    ja: Teamsについて
+    en: About Teams
+  next:
+    - teams-menu
+    - main:exit
+- key: teams-menu
+  msg:
+    ja: UTokyo Accountの種類を選んでください。
+    en: Please select the type of your UTokyo Account.
+  opt:
+    - msg:
+        ja: 学生
+        en: Student
+      next: teams-student
+    - msg:
+        ja: 教職員
+        en: Faculty and staff
+      next: teams-staff
+- key: teams-student
+  msg:
+    ja: 学生のUTokyo AccountではTeamsを使えません。
+    en: Teams cannot be used with the student's UTokyo Account.
+- key: teams-staff
+  msg:
+    ja: |
+      UTokyo Portalをご参照ください。
+      https://univtokyo.sharepoint.com/sites/utokyoportal/wiki/d/IT_Tool_020.aspx
+    en: |
+      Please refer to the UTokyo Portal page.
+      https://univtokyo.sharepoint.com/sites/utokyoportal/wiki/d/IT_Tool_020.aspx

@@ -1,31 +1,145 @@
 - key: root
   msg:
     ja: こんにちは！　問題解決のお手伝いをします！
-    en: Hello! We will help you in chat!
+    en: Hello! How can we help you?
   next: menu
 - key: menu
   msg:
-    ja: 利用するメニューを選んでください。
-    en: Please select a option
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
   opt:
     - msg:
-        ja: よくある質問を確認する
-        en: Checking frequently asked questions
-      link: https://utelecon.adm.u-tokyo.ac.jp/faq/
+        ja: UTokyo Account
+        en: UTokyo Account
+      next: utac:root
     - msg:
-        ja: あてはまる状況をチャット形式で探す
-        en: Finding your situation in chat
+        ja: 授業（UTAS, ITC-LMS）
+        en: Classes (UTAS, ITC-LMS)
+      next: class
+    - msg:
+        ja: ネットワーク（UTokyo Wi-Fi, UTokyo VPN）
+        en: Network (UTokyo Wi-Fi, UTokyo VPN)
+      next: net
+    - msg:
+        ja: Web会議（Zoom, Webex, Slido）
+        en: Web conference (Zoom, Webex, Slido)
+      next: conf
+    - msg:
+        ja: Google Workspace（ECCSクラウドメール）
+        en: Google Workspace (ECCS Cloud Email)
+      next: g:root
+    - msg:
+        ja: Microsoft 365（UTokyo Microsoft License）
+        en: Microsoft 365 (UTokyo Microsoft License)
+      next: ms:root
+    - msg:
+        ja: その他
+        en: Others
       next: cat
 - key: cat
   msg:
-    ja: 何についてお困りですか？
-    en: What do you need help with?
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
   opt:
     - msg:
-        ja: テスト1
-        en: TEST1
-      next: test1:root
+        ja: コミュニケーションツール（UTokyo Slack, Teams）
+        en: Communication tools (UTokyo Slack, Teams)
+      next: comm
     - msg:
-        ja: テスト2
-        en: TEST2
-      next: test2:root
+        ja: ソフトウェアライセンス（MATLAB, Windows, Azure, ウイルス対策等）
+        en: Software license (MATLAB, Windows, Azure, Antivirus, etc)
+      next: soft:root
+    - msg:
+        ja: ECCS端末（キャンパス内のパソコンや複合機）
+        en: ECCS terminals (Computers and printers on campus)
+      next: eccs:root
+    - msg:
+        ja: 事務関係（UTokyo Portal等）
+        en: ICT systems for faculty and staff
+      next: portal:root
+    - msg:
+        ja: 図書館関係（OPAC, EZproxy等）
+        en: Library systems (OPAC, EZproxy, etc)
+      next: lib:root
+### サブメニュー ###
+- key: class
+  msg:
+    ja: 授業について
+    en: About classes
+  opt:
+    - msg:
+        ja: UTAS（学務システム）
+        en: UTAS (Academic Affairs System)
+      next: utas:root
+    - msg:
+        ja: ITC-LMS（学習管理システム）
+        en: ITC-LMS (Learning Management System)
+      next: lms:root
+    - msg:
+        ja: オンライン授業URL・入室
+        en: Online class URL or participation
+      next: utas:oc-root
+- key: net
+  msg:
+    ja: ネットワークについて
+    en: About network
+  opt:
+    - msg:
+        ja: UTokyo Wi-Fi, eduroam
+        en: UTokyo Wi-Fi, eduroam
+      next: wifi:root
+    - msg:
+        ja: UTokyo VPN
+        en: UTokyo VPN
+      next: vpn:root
+- key: conf
+  msg:
+    ja: Web会議について
+    en: About web conference
+  opt:
+    - msg:
+        ja: オンライン授業URL・入室
+        en: Online class URL or participation
+      next: utas:oc-root
+    - msg:
+        ja: Zoom
+        en: Zoom
+      next: zoom:root
+    - msg:
+        ja: Webex, Slido
+        en: Webex, Slido
+      next: webex:root
+    - msg:
+        ja: Google Meet
+        en: Google Meet
+      next: g:meet-root
+    - msg:
+        ja: Microsoft Teams
+        en: Microsoft Teams
+      next: ms:teams-root
+- key: comm
+  msg:
+    ja: コミュニケーションツールについて
+    en: About communication tools
+  opt:
+    - msg:
+        ja: UTokyo Slack
+        en: UTokyo Slack
+      next: slack:root
+    - msg:
+        ja: Microsoft Teams
+        en: Microsoft Teams
+      next: ms:teams-root
+    - msg:
+        ja: Google Chat
+        en: Google Chat
+      next: g:chat-root
+### 終了時 ###
+- key: exit
+  msg:
+    ja: ""
+    en: ""
+- key: wip
+  msg:
+    ja: この項目は現在準備中です。
+    en: The answer is still a work in progress.

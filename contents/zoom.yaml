@@ -1,0 +1,54 @@
+- key: root
+  msg:
+    ja: Zoomについて
+    en: About Zoom
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: お問い合わせに関連するメニューを選んでください。
+    en: Please select the menu relevant to your inquiry.
+  opt:
+    - msg:
+        ja: サインイン
+        en: Signing in process
+      next: signin
+    - msg:
+        ja: ミーティング参加
+        en: Joining in meetings
+      next: join
+    - msg:
+        ja: ライセンス
+        en: Licenses
+      next: lic
+# サインイン時
+- key: signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: エラーコード 1003
+        en: Error Code 1003
+      next: "1003"
+- key: "1003"
+  msg:
+    ja: |
+      `@g.ecc.u-tokyo.ac.jp` で終わるZoomアカウントは無効化されました。
+      今後はUTokyo AccountでサインインするZoomアカウントをご利用ください。
+    en: |
+      Zoom accounts ending with `@g.ecc.u-tokyo.ac.jp` have been disabled.
+      From now on, please use the Zoom account by signing in to your UTokyo Account.
+# ミーティング参加時
+- key: join
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  next: main:wip
+# ライセンス
+- key: lic
+  msg:
+    ja: Zoomライセンスについて
+    en: About Zoom license
+  next: main:wip

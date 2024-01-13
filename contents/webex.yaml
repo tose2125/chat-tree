@@ -1,0 +1,12 @@
+### Webex ###
+- key: root
+  msg:
+    ja: Webexについて
+    en: About Webex
+  next: main:wip
+# Slido
+- key: slido
+  msg:
+    ja: Slidoについて
+    en: About Slido
+  next: main:wip

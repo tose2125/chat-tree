@@ -1,0 +1,69 @@
+- key: root
+  msg:
+    ja: UTokyo Slackについて
+    en: About UTokyo Slack
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: サインイン時
+        en: When you try signing in
+      next: signin
+    - msg:
+        ja: サインイン後
+        en: After you sign in
+      next: use
+# サインイン時
+- key: signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: utac:pass
+    - msg:
+        ja: これに対するアクセス権がありません 53003
+        en: You don't have access to this
+      next: mfa
+    - msg:
+        ja: 申し訳ありませんが、サインイン中に問題が発生しました。
+        en: Sorry, but we're having trouble signing you in.
+      next: aadsts
+- key: aadsts
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: "AADSTS50105: Your administrator has configured the application UTokyo Slack ..."
+        en: "AADSTS50105: Your administrator has configured the application UTokyo Slack ..."
+      next: ise
+    - msg:
+        ja: "AADSTS50011: The reply URL 'https://***.slack.com/sso/saml' specified in the request ..."
+        en: "AADSTS50011: The reply URL 'https://***.slack.com/sso/saml' specified in the request ..."
+      next: mob
+- key: mfa
+  msg:
+    ja: 多要素認証を有効化していない場合に表示されます。
+    en: This error message appears if you have not enabled multi-factor authentication.
+- key: ise
+  msg:
+    ja: 情報セキュリティ教育に合格していない場合に表示されます。
+    en: This error message appears if you have not passed the information security education test.
+- key: mob
+  msg:
+    ja: 「UTokyo Accountでサインイン」以外の、QRコードなどでサインインした場合に表示されます。
+    en: This error message appears if you have tried signing in by methods other than "Sign in with UTokyo Account" such as a QR code.
+# サインイン後
+- key: use
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  next: main:wip

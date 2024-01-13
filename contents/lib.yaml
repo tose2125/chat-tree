@@ -1,0 +1,19 @@
+- key: root
+  msg:
+    ja: 図書館関係について
+    en: About library systems
+  next:
+    - exit
+- key: exit
+  msg:
+    ja: 図書館関係の問い合わせは「ASKサービス」へお願いいたします。
+    en: Please contact "ASK Service" for library-related inquiries.
+  opt:
+    - msg:
+        ja: 図書館サイトへ
+        en: To library website
+      link: https://www.lib.u-tokyo.ac.jp/
+    - msg:
+        ja: ASKサービスへ
+        en: To ASK service
+      link: https://opac.dl.itc.u-tokyo.ac.jp/opac/ask/

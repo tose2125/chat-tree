@@ -1,0 +1,103 @@
+### UTAS ###
+- key: root
+  msg:
+    ja: UTASについて
+    en: About UTAS
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: サインイン時
+        en: When you try signing in
+      next: signin
+    - msg:
+        ja: サインイン後
+        en: After you sign in
+      next: utas
+# サインイン時
+- key: signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: utac:pass
+    - msg:
+        ja: Error あなたは現在このシステムを利用できません。
+        en: Error あなたは現在このシステムを利用できません。
+      next: perm
+- key: perm
+  msg:
+    ja: |
+      UTASの利用権限がついていない場合に表示されます。
+      利用権限がついていない原因は身分により異なりますので、身分を選択してください。
+    en: |
+      This error message appears if you do not have permission to use UTAS.
+      Please select your position because the reason why you do not have it depends on your position.
+  opt:
+    - msg:
+        ja: 正規学生（学部学生・大学院学生など）
+        en: Regular course student (Undergraduate student, graduate student, etc)
+      next: perm-reg
+    - msg:
+        ja: その他学生（研究生など）
+        en: Other student (Research student, etc)
+      next: perm-non
+    - msg:
+        ja: 教職員
+        en: Faculty and staff
+      next: perm-fcl
+- key: perm-reg # 正規学生
+  msg:
+    ja: |
+      各課程（前期課程・後期課程・修士課程・博士課程など）で修了処理が行われるとUTASの利用権限が停止されます。
+      進学後の学部・研究科がUTASの利用権限を付与するまでお待ちください。
+    en: |
+      The permission to use UTAS is suspended after the course completion in each course
+      (junior division, senior division, master's course, doctoral course, etc).
+      Please wait until the faculty or graduate school you will belong to grant you the permission.
+- key: perm-non # 非正規学生
+  msg:
+    ja: 所属の学部・研究科等の学務担当にお問い合わせください。
+    en: Please contact the academic affairs office of your faculty or graduate school.
+- key: perm-fcl # 教職員
+  msg:
+    ja: |
+      教職員は授業を担当される方にのみ利用権限が付与されます。
+      所属部局または授業開講部局の学務担当にお問い合わせください。
+    en: |
+      Faculty and staff are granted the permission to those who are in charge of the classes.
+      Please contact the academic affairs office of the faculty or graduate school you belong to or open your class.
+# サインイン後
+- key: utas
+  msg:
+    ja: 何をしたいですか？
+    en: What do you want to do?
+  opt:
+    - msg:
+        ja: 連絡先メールアドレスを変更したい
+        en: I want to change my contact email address.
+      next: mail
+- key: mail
+  msg:
+    ja: |
+      「学生情報」「現住所等変更入力」と進んでください。
+      ただし一部の部局は、UTAS上での変更を認めていません。
+      その場合は所属の学務担当へお問い合わせください。
+    en: |
+      Please proceed with "Student Info" and "Register Address Update, etc."
+      However, some faculties and graduate schools do not allow changes on UTAS.
+      In that case, please contact the academic affairs department you belong to.
+### オンライン授業 ###
+- key: oc-root
+  msg:
+    ja: オンライン授業URL・入室について
+    en: About online class URL or participation
+  next: main:wip

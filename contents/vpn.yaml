@@ -1,0 +1,73 @@
+- key: root
+  msg:
+    ja: UTokyo VPNについて
+    en: About UTokyo VPN
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: サインイン時
+        en: When you try signing in
+      next: signin
+    - msg:
+        ja: サインイン後
+        en: After you sign in
+      next: conn
+# サインイン時
+- key: signin
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: utac:pass
+    - msg:
+        ja: これに対するアクセス権がありません
+        en: You don't have access to this
+      next: mfa
+    - msg:
+        ja: 申し訳ありませんが、サインイン中に問題が発生しました。
+        en: Sorry, but we're having trouble signing you in.
+      next: aadsts
+- key: aadsts
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: "AADSTS50105: Your administrator has configured the application Cisco AnyConnect ..."
+        en: "AADSTS50105: Your administrator has configured the application Cisco AnyConnect ..."
+      next: ise
+    - msg:
+        ja: "AADSTS50020: User account 'xxx@example.com' from identity provider 'live.com' does not exist in tenant 'The University of Tokyo' ..."
+        en: "AADSTS50020: User account 'xxx@example.com' from identity provider 'live.com' does not exist in tenant 'The University of Tokyo' ..."
+      next: conflict
+    - msg:
+        ja: "AADSTS90100: ctx parameter is empty or not valid."
+        en: "AADSTS90100: ctx parameter is empty or not valid."
+      next: conflict
+- key: ise
+  msg:
+    ja: 情報セキュリティ教育に合格していない場合に表示されます。
+    en: This error message appears if you have not passed the information security education test.
+- key: mfa
+  msg:
+    ja: 多要素認証を有効化していない場合に表示されます。
+    en: This error message appears if you have not enabled multi-factor authentication.
+- key: conflict
+  msg:
+    ja: 他の大学等のアカウントと干渉している場合に表示されます。
+    en: This error message appears if there is interference with another university's account.
+# サインイン後
+- key: conn
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  next: main:wip

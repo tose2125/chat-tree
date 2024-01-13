@@ -1,0 +1,11 @@
+- key: root
+  msg:
+    ja: 事務関係について
+    en: About ICT systems for faculty and staff
+  next: main:wip
+# 職員メール
+- key: mail
+  msg:
+    ja: 職員メールについて
+    en: About email system for staff
+  next: main:wip

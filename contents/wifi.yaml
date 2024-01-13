@@ -1,0 +1,135 @@
+- key: root
+  msg:
+    ja: UTokyo Wi-Fi, eduroam について
+    en: About UTokyo Wi-Fi and eduroam
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: どの段階でトラブルが発生していますか？
+    en: At which step is the problem occurring?
+  opt:
+    - msg:
+        ja: アカウント取得時
+        en: When you apply for a Wi-Fi account
+      next: acc
+    - msg:
+        ja: 接続時
+        en: When you try connecting your device
+      next: conn
+    - msg:
+        ja: 接続後
+        en: After you connect your device
+      next: use
+# アカウント取得時
+- key: acc
+  msg:
+    ja: どのようなトラブルが生じていますか？
+    en: What trouble do you face?
+  opt:
+    - msg:
+        ja: UTokyo Wi-Fiアカウントメニューにサインインできない
+        en: I cannot sign in to the UTokyo Wi-Fi Account Menu
+      next: acc-block
+    - msg:
+        ja: パスワード通知メールが届かない
+        en: I have not receive the password notification email
+      next: acc-pass
+- key: acc-pass
+  msg:
+    ja: |
+      ECCSクラウドメールに届いていないか確認してください。迷惑メールも確認してください。
+      パスワードは申請直後の画面にも表示されますので、それを利用していただくこともできます。
+    en: |
+      Please check if you have received the email to your ECCS cloud email, including the spam folder.
+      You can use the password displayed on the screen immediately after the application.
+# 接続時
+- key: conn
+  msg:
+    ja: 当該デバイスは以前に接続できていましたか？
+    en: Was the device connected before?
+  opt:
+    - msg:
+        ja: 接続できていた
+        en: It was connected.
+      next: acc-chk
+    - msg:
+        ja: 接続できたことはない
+        en: It has never been able to connect.
+      next: acc-chk
+# アカウント有効期限チェック
+- key: acc-chk
+  msg:
+    ja: まず「UTokyo Wi-Fi アカウントメニュー」にサインインして、アカウントの有効期限を確認してください。
+    en: First, please sign in to the "UTokyo Wi-Fi Account Menu" and check the expiration date of your account.
+  opt:
+    - msg:
+        ja: サインインできた。
+        en: I can sign in.
+      next: acc-list
+    - msg:
+        ja: サインインできなかった。
+        en: I CANNOT sign in.
+      next: acc-block
+- key: acc-list
+  msg:
+    ja: u2 から始まるユーザーIDが表示されていますか？
+    en: Is the user ID starting with u2 displayed?
+  opt:
+    - msg:
+        ja: 存在する
+        en: It exists
+      next: dvc-cfg
+    - msg:
+        ja: 存在しない
+        en: It does not exist
+      next: acc-no
+- key: acc-block
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: ユーザーIDまたはパスワードが正しくありません。
+        en: Your user ID or password is incorrect.
+      next: utac:pass
+    - msg:
+        ja: 申し訳ありませんが、サインイン中に問題が発生しました。
+        en: Sorry, but we're having trouble signing you in.
+      next: aadsts
+- key: aadsts
+  msg:
+    ja: どのようなエラーメッセージが表示されますか？
+    en: What error message do you see?
+  opt:
+    - msg:
+        ja: "AADSTS50105: Your administrator has configured the application utokyo-wifi-2022"
+        en: "AADSTS50105: Your administrator has configured the application utokyo-wifi-2022"
+      next: ise
+- key: ise
+  msg:
+    ja: 情報セキュリティ教育に合格していない場合に表示されます。
+    en: This error message appears if you have not passed the information security education test.
+- key: acc-no
+  msg:
+    ja: アカウントの新規申請を行ってください。
+    en: Please apply for a new account.
+# 機器の設定
+- key: dvc-cfg
+  msg:
+    ja: 現在有効なWi-Fiアカウントが端末に設定されていますか？
+    en: Is the currently valid Wi-Fi account set up on the device?
+  next: main:wip
+# 場所の問題
+- key: ap
+  msg:
+    ja: 他部局（学部・研究科等）の建物では接続できますか？
+    en: Can you connect the device in the building of other faculty or graduate school?
+  next: main:wip
+# 接続後
+- key: use
+  msg:
+    ja: 接続後について
+    en: About use
+  next: main:wip

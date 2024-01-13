@@ -1,0 +1,57 @@
+- key: root
+  msg:
+    ja: ITC-LMSについて
+    en: About ITC-LMS
+  next:
+    - menu
+    - main:exit
+- key: menu
+  msg:
+    ja: どの立場での利用ですか？
+    en: Which is your position?
+  opt:
+    - msg:
+        ja: 学生
+        en: Student
+      next: student
+    - msg:
+        ja: 教員
+        en: Teacher
+      next: teacher
+- key: student
+  msg:
+    ja: 学生からのよくある質問は以下の通りです。
+    en: Frequently asked questions from students are as follows.
+  opt:
+    - msg:
+        ja: 仮登録のコースコンテンツにアクセスしたい
+        en: I want to access the course contents of the provisional registration.
+      next: temp
+    - msg:
+        ja: その他（ECCSウェブサイトへ）
+        en: Others (To ECCS website)
+      link: https://www.ecc.u-tokyo.ac.jp/faq/
+- key: teacher
+  msg:
+    ja: 教員からのよくある質問は以下の通りです。
+    en: Frequently asked questions from teachers are as follows.
+  opt:
+    - msg:
+        ja: 履修登録しない学生にもコースコンテンツへのアクセスを許可したい
+        en: I want to allow students who do not register to access the course contents.
+      next: temp
+    - msg:
+        ja: その他（ECCSウェブサイトへ）
+        en: Others (To ECCS website)
+      link: https://www.ecc.u-tokyo.ac.jp/faq/
+# 個別質問
+- key: temp
+  msg:
+    ja: |
+      教員が設定を変更すれば可能です。
+      手順は以下のページをご覧ください。
+      https://www.ecc.u-tokyo.ac.jp/announcement/2021/06/07_3336.html
+    en: |
+      It is possible if the teacher changes the setting.
+      Please see the following page for the procedures.
+      https://www.ecc.u-tokyo.ac.jp/announcement/2021/06/07_3336.html (in Japanese)
