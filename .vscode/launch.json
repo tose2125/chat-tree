@@ -3,7 +3,15 @@
   "configurations": [
     {
       "command": "./node_modules/.bin/astro dev",
+      "cwd": "${workspaceFolder}/demo",
       "name": "Development server",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm run build && pnpm run process",
+      "cwd": "${workspaceFolder}/lib",
+      "name": "Build chat tree",
       "request": "launch",
       "type": "node-terminal"
     }
