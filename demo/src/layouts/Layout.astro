@@ -1,5 +1,6 @@
 ---
 import type { MDXLayoutProps } from 'astro'
+import { ViewTransitions } from 'astro:transitions'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 
@@ -28,6 +29,7 @@ export const title = {
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
     <title>{title[lang]}</title>
+    <ViewTransitions />
   </head>
   <body>
     <header class='header'>
