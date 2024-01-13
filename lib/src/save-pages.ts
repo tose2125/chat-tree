@@ -24,6 +24,18 @@ const resolveKeys = (currentFullKey: string, nextKeys: string | string[]): strin
   const nextKeysArray = Array.isArray(nextKeys) ? nextKeys : [nextKeys]
   return nextKeysArray.map((nextKey) => (nextKey.includes(':') ? nextKey : [currentFullKey.split(':')[0], nextKey].join(':')))
 }
+const removeDuplicateKeys = (keys: string[]): string[] =>
+  keys.reduce((previousValue: string[], currentValue: string): string[] => {
+    if (previousValue.length === 0) {
+      return [currentValue]
+    }
+    const lastValue = previousValue[previousValue.length - 1]
+    if (lastValue === currentValue) {
+      return previousValue
+    } else {
+      return [...previousValue, currentValue]
+    }
+  }, [])
 
 type PageFragmentType = {
   msg: ChatTreeNodeType['msg']
@@ -87,7 +99,7 @@ const buildPage = (allNodes: NodesType) => {
       const internalLinkOptions = leafNode.opt.filter(isInternalLinkOption)
       const rawKeyForEachOption = internalLinkOptions.map((option) => (Array.isArray(option.next) ? option.next[0] : option.next))
       const urlKeyForEachOption = rawKeyForEachOption.map((key) =>
-        encodeURIComponent(key.replace(/:root$/, '').replaceAll(/[\\/:*?"'<>.%]/g, '-')).replaceAll('%', '')
+        encodeURIComponent(key.replace(/[:-]root$/, '').replaceAll(/[\\/:*?"'<>.%]/g, '-')).replaceAll('%', '')
       )
       const uniqueKeys = urlKeyForEachOption.reduce<string[]>((result, key, index) => {
         if (!result.includes(key)) {
@@ -133,16 +145,23 @@ const buildPage = (allNodes: NodesType) => {
         .map((option, index) => {
           const selectedOptionIndex = leafNode.opt.indexOf(option)
           const nextKeys = resolveKeys(leafKey, option.next).reverse()
-          return buildPage(joinPagePath(makeOptionActive(currentPage, selectedOptionIndex), uniqueKeys[index]), [...keyStack, ...nextKeys], true)
+          return buildPage(
+            joinPagePath(makeOptionActive(currentPage, selectedOptionIndex), uniqueKeys[index]),
+            removeDuplicateKeys([...keyStack, ...nextKeys]),
+            true
+          )
         })
         .flat()
       return [currentPage, ...childrenPages]
     }
     if (isTransparentNode(leafNode)) {
       const nextKeys = resolveKeys(leafKey, leafNode.next).reverse()
-      return buildPage(makeLastActive(mergePageFragment(pageData, leafNode), afterSelect), [...keyStack, ...nextKeys])
+      return buildPage(makeLastActive(mergePageFragment(pageData, leafNode), afterSelect), removeDuplicateKeys([...keyStack, ...nextKeys]))
     }
     if (isTerminalNode(leafNode)) {
+      if (keyStack.length > 0) {
+        return buildPage(makeLastActive(mergePageFragment(pageData, leafNode), afterSelect), keyStack)
+      }
       return [makeLastActive(mergePageFragment(pageData, leafNode), afterSelect)]
     }
 
